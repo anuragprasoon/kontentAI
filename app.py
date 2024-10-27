@@ -86,6 +86,7 @@ if twittersubmit:
     else:
         newcontent=model.generate_content("Convert the following content into a humanized written twiiter thread : "+content)
         form1.write(newcontent.text)
+        model.generate_content("forget the previous data")
 
 if linkedinsubmit:
     if "youtube" in url or "youtu.be" in url:
@@ -97,3 +98,4 @@ if linkedinsubmit:
     else:
         newcontent=model.generate_content("Convert the following content into a humanized written linkedin content of 1200 character : "+content)
         form1.write(newcontent.text)
+        model.generate_content("forget the previous data")

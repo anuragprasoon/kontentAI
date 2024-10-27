@@ -83,9 +83,11 @@ def extract_yt(url):
         print(f"Error: {e}")
     return subtitle
 
-url='https://youtu.be/sTYuKgzZoL8?si=bH-nyEDMev5eyG5A'
+url='https://youtu.be/W4iHnvaNj_8?si=cCIXhI6RG3Pn2ZmY'
 if "youtube" in url or "youtu.be" in url:
         content=extract_yt(url)
+        newcontent=model.generate_content("Convert the following content into a humanized written twiiter thread : "+content)
+        print(newcontent.text)
 else:
     content=extract_blog(url)
     newcontent=model.generate_content("Convert the following content into a humanized written twiiter thread : "+content)
