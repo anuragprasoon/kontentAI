@@ -92,5 +92,8 @@ if linkedinsubmit:
         content=extract_yt(url)
     else:
         content=extract_blog(url)
-    newcontent=model.generate_content("Convert the following content into a humanized written linkedin content of 1200 character : "+content)
-    form1.write(newcontent.text)
+    if content==0:
+        form1.write("Sorry! Something went Wrong. Data couldn't be fetch from the given Link.")
+    else:
+        newcontent=model.generate_content("Convert the following content into a humanized written linkedin content of 1200 character : "+content)
+        form1.write(newcontent.text)
