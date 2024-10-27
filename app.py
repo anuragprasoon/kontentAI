@@ -51,10 +51,10 @@ def extract_blog(url):
                 
                 return content.strip()
             else:
-                return f"Failed to retrieve the page, status code: {response.status_code}"
+                return 0
                 
         except Exception as e:
-            return f"Error during manual extraction: {e}"
+            return 0
 
 def extract_yt(url):
     yt=YouTube(url)
@@ -65,7 +65,10 @@ def extract_yt(url):
             subtitle+=entry['text']+'\n' 
     except Exception as e:
         print(f"Error: {e}")
+    if subtitle=='':
+        return 0
     return subtitle
+
 
 form1=st.form("form")
 form1.write("Welcome to Kontent-AI")
@@ -78,8 +81,11 @@ if twittersubmit:
         content=extract_yt(url)
     else:
         content=extract_blog(url)
-    newcontent=model.generate_content("Convert the following content into a humanized written twiiter thread : "+content)
-    form1.write(newcontent.text)
+    if content==0:
+        form1.write("Sorry! Something went Wrong. Data couldn't be fetch from the given Link.")
+    else:
+        newcontent=model.generate_content("Convert the following content into a humanized written twiiter thread : "+content)
+        form1.write(newcontent.text)
 
 if linkedinsubmit:
     if "youtube" in url or "youtu.be" in url:
