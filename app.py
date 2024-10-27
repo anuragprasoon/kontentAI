@@ -7,6 +7,15 @@ import requests
 from bs4 import BeautifulSoup
 from newspaper import Article
 import streamlit as st
+from PIL import Image
+
+
+im = Image.open("kontentai.png")
+st.set_page_config(
+    page_title="KontentAI",
+    page_icon=im,
+    layout="wide",
+)
 
 load_dotenv()
 
