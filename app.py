@@ -16,7 +16,7 @@ st.set_page_config(
     page_icon=im,
     layout="wide",
 )
-
+st.logo(im, size="large", link=None, icon_image=None)
 load_dotenv()
 
 genai.configure(api_key=os.getenv("API"))
